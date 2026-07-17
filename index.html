@@ -408,6 +408,24 @@
     border:1px solid var(--line);
     cursor:zoom-out;
   }
+  .lightbox-figure{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:0.9rem;
+    max-width:100%;
+    max-height:100%;
+  }
+  .lightbox-figure img{ max-height:80vh; }
+  .lightbox-caption{
+    font-family:'Space Mono',monospace;
+    font-size:0.75rem;
+    letter-spacing:0.04em;
+    color:var(--ash);
+    text-align:center;
+    max-width:520px;
+    min-height:1em;
+  }
   .lightbox-close{
     position:absolute;
     top:1.6rem; right:clamp(1.5rem,5vw,4rem);
@@ -421,6 +439,7 @@
   }
   .lightbox-close:hover{ color:var(--paper); }
   .zoomable{ cursor:zoom-in; }
+  .carousel-photo{ cursor:zoom-in; }
 
   /* ---------- PORTRAIT CAROUSEL ---------- */
   .carousel-wrap{ position:relative; }
@@ -687,16 +706,16 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 18l-6-6 6-6"/></svg>
     </button>
     <div class="carousel" id="castingCarousel">
-      <div class="carousel-slide"><div class="select-frame"><img class="zoomable" src="portrait-01.png" alt="Portrait casting 01, cheveux courts blonds, mur béton"></div><div class="carousel-caption">Casting 01</div></div>
-      <div class="carousel-slide"><div class="select-frame"><img class="zoomable" src="portrait-02.png" alt="Portrait casting 02, cheveux bruns ondulés, mur béton"></div><div class="carousel-caption">Casting 02</div></div>
-      <div class="carousel-slide"><div class="select-frame"><img class="zoomable" src="portrait-03.png" alt="Portrait casting 03, cheveux bruns lisses, mur patiné"></div><div class="carousel-caption">Casting 03</div></div>
-      <div class="carousel-slide"><div class="select-frame"><img class="zoomable" src="portrait-04.png" alt="Portrait casting 04, cheveux roux, taches de rousseur, mur béton"></div><div class="carousel-caption">Casting 04</div></div>
-      <div class="carousel-slide"><div class="select-frame"><img class="zoomable" src="portrait-05.png" alt="Portrait casting 05, cheveux afro courts, mur béton"></div><div class="carousel-caption">Casting 05</div></div>
-      <div class="carousel-slide"><div class="select-frame"><img class="zoomable" src="portrait-06.png" alt="Portrait casting 06, cheveux bruns bouclés, mur béton"></div><div class="carousel-caption">Casting 06</div></div>
-      <div class="carousel-slide"><div class="select-frame"><img class="zoomable" src="portrait-07.png" alt="Portrait casting 07, cheveux gris longs, mur patiné"></div><div class="carousel-caption">Casting 07</div></div>
-      <div class="carousel-slide"><div class="select-frame"><img class="zoomable" src="portrait-08.png" alt="Portrait casting 08, cheveux roux ondulés, mur patiné"></div><div class="carousel-caption">Casting 08</div></div>
-      <div class="carousel-slide"><div class="select-frame"><img class="zoomable" src="portrait-09.png" alt="Portrait casting 09, cheveux bruns longs et lisses, mur patiné"></div><div class="carousel-caption">Casting 09</div></div>
-      <div class="carousel-slide"><div class="select-frame"><img class="zoomable" src="portrait-10.png" alt="Portrait casting 10, cheveux bruns ondulés, mur béton"></div><div class="carousel-caption">Casting 10</div></div>
+      <div class="carousel-slide"><div class="select-frame"><img class="carousel-photo" src="portrait-01.png" data-fullsrc="makingof-01.png" data-caption-fr="Ajustement du col entre deux poses." data-caption-en="Adjusting the collar between poses." alt="Portrait casting 01, cheveux courts blonds, mur béton"></div><div class="carousel-caption">Casting 01</div></div>
+      <div class="carousel-slide"><div class="select-frame"><img class="carousel-photo" src="portrait-02.png" data-fullsrc="makingof-02.png" data-caption-fr="Cheveux relevés, pause avant la prise suivante." data-caption-en="Hair pulled up, a pause before the next take." alt="Portrait casting 02, cheveux bruns ondulés, mur béton"></div><div class="carousel-caption">Casting 02</div></div>
+      <div class="carousel-slide"><div class="select-frame"><img class="carousel-photo" src="portrait-03.png" data-fullsrc="makingof-03.png" data-caption-fr="Un instant les yeux fermés, entre deux flashs." data-caption-en="A moment with eyes closed, between flashes." alt="Portrait casting 03, cheveux bruns lisses, mur patiné"></div><div class="carousel-caption">Casting 03</div></div>
+      <div class="carousel-slide"><div class="select-frame"><img class="carousel-photo" src="portrait-04.png" data-fullsrc="makingof-04.png" data-caption-fr="Pause assise, jean et lumière de coin." data-caption-en="Sitting break, denim and corner light." alt="Portrait casting 04, cheveux roux, taches de rousseur, mur béton"></div><div class="carousel-caption">Casting 04</div></div>
+      <div class="carousel-slide"><div class="select-frame"><img class="carousel-photo" src="portrait-05.png" data-fullsrc="makingof-05.png" data-caption-fr="Un éclat de rire hors champ." data-caption-en="A laugh caught off-frame." alt="Portrait casting 05, cheveux afro courts, mur béton"></div><div class="carousel-caption">Casting 05</div></div>
+      <div class="carousel-slide"><div class="select-frame"><img class="carousel-photo" src="portrait-06.png" data-fullsrc="makingof-06.png" data-caption-fr="Café entre deux setups." data-caption-en="Coffee between setups." alt="Portrait casting 06, cheveux bruns bouclés, mur béton"></div><div class="carousel-caption">Casting 06</div></div>
+      <div class="carousel-slide"><div class="select-frame"><img class="carousel-photo" src="portrait-07.png" data-fullsrc="makingof-07.png" data-caption-fr="En pleine discussion avec l'équipe." data-caption-en="Mid-conversation with the team." alt="Portrait casting 07, cheveux gris longs, mur patiné"></div><div class="carousel-caption">Casting 07</div></div>
+      <div class="carousel-slide"><div class="select-frame"><img class="carousel-photo" src="portrait-08.png" data-fullsrc="makingof-08.png" data-caption-fr="Retouche de dernière minute avant la prise." data-caption-en="A last-minute touch-up before the take." alt="Portrait casting 08, cheveux roux ondulés, mur patiné"></div><div class="carousel-caption">Casting 08</div></div>
+      <div class="carousel-slide"><div class="select-frame"><img class="carousel-photo" src="portrait-09.png" data-fullsrc="makingof-09.png" data-caption-fr="Vérification au miroir de poche." data-caption-en="A quick check in a pocket mirror." alt="Portrait casting 09, cheveux bruns longs et lisses, mur patiné"></div><div class="carousel-caption">Casting 09</div></div>
+      <div class="carousel-slide"><div class="select-frame"><img class="carousel-photo" src="portrait-10.png" data-fullsrc="makingof-10.png" data-caption-fr="La styliste ajuste le col, hors champ." data-caption-en="The stylist adjusts the collar, off-frame." alt="Portrait casting 10, cheveux bruns ondulés, mur béton"></div><div class="carousel-caption">Casting 10</div></div>
     </div>
     <button class="carousel-nav next" aria-label="Suivant / Next" data-dir="1">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18l6-6-6-6"/></svg>
@@ -731,7 +750,10 @@ DISPONIBLE POUR NOUVEAUX PROJETS — 2026</div>
 
 <div class="lightbox" id="lightbox">
   <button class="lightbox-close" id="lightboxClose" data-fr="Fermer ✕" data-en="Close ✕">Fermer ✕</button>
-  <img id="lightboxImg" src="" alt="">
+  <div class="lightbox-figure">
+    <img id="lightboxImg" src="" alt="">
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+  </div>
 </div>
 
 <script>
@@ -781,19 +803,29 @@ DISPONIBLE POUR NOUVEAUX PROJETS — 2026</div>
   // lightbox
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxCaption = document.getElementById('lightboxCaption');
   const lightboxClose = document.getElementById('lightboxClose');
 
-  function openLightbox(src, alt){
+  function openLightbox(src, alt, caption){
     lightboxImg.src = src;
     lightboxImg.alt = alt || '';
+    lightboxCaption.textContent = caption || '';
     lightbox.classList.add('is-open');
   }
   function closeLightbox(){
     lightbox.classList.remove('is-open');
     lightboxImg.src = '';
+    lightboxCaption.textContent = '';
   }
   document.querySelectorAll('img.zoomable').forEach(img=>{
     img.addEventListener('click', ()=> openLightbox(img.src, img.alt));
+  });
+  document.querySelectorAll('img.carousel-photo').forEach(img=>{
+    img.addEventListener('click', ()=>{
+      const fullSrc = img.getAttribute('data-fullsrc');
+      const caption = img.getAttribute('data-caption-' + currentLang) || img.getAttribute('data-caption-fr');
+      openLightbox(fullSrc, img.alt, caption);
+    });
   });
   lightbox.addEventListener('click', closeLightbox);
   lightboxClose.addEventListener('click', (e)=>{ e.stopPropagation(); closeLightbox(); });
