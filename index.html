@@ -369,6 +369,117 @@
     line-height:1.6;
   }
 
+  /* ---------- BACK TO TOP ---------- */
+  .back-to-top{
+    position:fixed;
+    bottom:1.8rem; right:1.8rem;
+    z-index:150;
+    width:48px; height:48px;
+    border-radius:50%;
+    border:1.5px solid var(--rust);
+    background:rgba(11,10,9,0.75);
+    backdrop-filter:blur(3px);
+    color:var(--paper);
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer;
+    opacity:0; visibility:hidden;
+    transform:translateY(10px);
+    transition:opacity 0.35s ease, transform 0.35s ease, visibility 0.35s;
+  }
+  .back-to-top.is-visible{ opacity:1; visibility:visible; transform:translateY(0); }
+  .back-to-top:hover{ background:rgba(11,10,9,0.95); }
+  .back-to-top svg{ width:18px; height:18px; }
+
+  /* ---------- LIGHTBOX ---------- */
+  .lightbox{
+    position:fixed; inset:0;
+    z-index:300;
+    background:rgba(11,10,9,0.94);
+    display:flex; align-items:center; justify-content:center;
+    padding:clamp(1.5rem,5vw,4rem);
+    opacity:0; visibility:hidden;
+    transition:opacity 0.3s ease, visibility 0.3s;
+  }
+  .lightbox.is-open{ opacity:1; visibility:visible; }
+  .lightbox img{
+    max-width:100%;
+    max-height:100%;
+    object-fit:contain;
+    border:1px solid var(--line);
+    cursor:zoom-out;
+  }
+  .lightbox-close{
+    position:absolute;
+    top:1.6rem; right:clamp(1.5rem,5vw,4rem);
+    font-family:'Space Mono',monospace;
+    font-size:0.75rem;
+    letter-spacing:0.1em;
+    color:var(--ash);
+    background:none; border:none;
+    cursor:pointer;
+    text-transform:uppercase;
+  }
+  .lightbox-close:hover{ color:var(--paper); }
+  .zoomable{ cursor:zoom-in; }
+
+  /* ---------- PORTRAIT CAROUSEL ---------- */
+  .carousel-wrap{ position:relative; }
+  .carousel{
+    display:flex;
+    gap:1.2rem;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    scroll-behavior:smooth;
+    padding-bottom:0.5rem;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:thin;
+    scrollbar-color:var(--rust) transparent;
+  }
+  .carousel::-webkit-scrollbar{ height:4px; }
+  .carousel::-webkit-scrollbar-thumb{ background:var(--rust); }
+  .carousel-slide{
+    flex:0 0 auto;
+    width:min(78vw, 300px);
+    scroll-snap-align:start;
+  }
+  .carousel-slide .select-frame{ margin-bottom:0; }
+  .carousel-slide img{
+    display:block;
+    width:100%;
+    height:auto;
+    aspect-ratio:4/5;
+    object-fit:cover;
+    filter:grayscale(0.1) contrast(1.02);
+  }
+  .carousel-caption{
+    margin-top:0.7rem;
+    font-family:'Space Mono',monospace;
+    font-size:0.68rem;
+    letter-spacing:0.08em;
+    color:var(--ash);
+    text-transform:uppercase;
+  }
+  .carousel-nav{
+    position:absolute;
+    top:50%; transform:translateY(-50%);
+    width:40px; height:40px;
+    border-radius:50%;
+    border:1.5px solid var(--rust);
+    background:rgba(11,10,9,0.6);
+    color:var(--paper);
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer;
+    z-index:5;
+  }
+  .carousel-nav:hover{ background:rgba(11,10,9,0.9); }
+  .carousel-nav.prev{ left:-1.2rem; }
+  .carousel-nav.next{ right:-1.2rem; }
+  .carousel-nav svg{ width:16px; height:16px; }
+
+  @media (max-width:760px){
+    .carousel-nav{ display:none; }
+  }
+
   /* ---------- FOOTER / CONTACT ---------- */
   footer{
     border-top:1px solid var(--line);
@@ -442,7 +553,7 @@
 <body>
 
 <div class="opener">
-  <img src="opener.png" alt="Portrait en gros plan, cheveux roux, mains levées derrière la tête, veste rose">
+  <img class="zoomable" src="opener.png" alt="Portrait en gros plan, cheveux roux, mains levées derrière la tête, veste rose">
 </div>
 
 <nav>
@@ -493,19 +604,19 @@
 
   <article class="roll">
     <div class="roll-meta"><strong>Roll 01</strong><span data-fr="Studio · Rideau contre-jour" data-en="Studio · Backlit curtain">Studio · Rideau contre-jour</span></div>
-    <div class="roll-frame"><img src="roll-01.png" alt="Planche contact, rouleau un — série de portraits studio devant un rideau contre-jour" loading="lazy"></div>
+    <div class="roll-frame"><img class="zoomable" src="roll-01.png" alt="Planche contact, rouleau un — série de portraits studio devant un rideau contre-jour" loading="lazy"></div>
     <p class="roll-caption" data-fr="Première passe en lumière disponible, le rideau comme seul décor. Le set garde son aplomb sur tout le rouleau — même distance, même mur, seule l'inclinaison de la tête change la lecture." data-en="First pass under available light, curtain as the only backdrop. The set holds its composure across the roll — same distance, same wall, the read changes with the tilt of the head.">Première passe en lumière disponible, le rideau comme seul décor. Le set garde son aplomb sur tout le rouleau — même distance, même mur, seule l'inclinaison de la tête change la lecture.</p>
   </article>
 
   <article class="roll">
     <div class="roll-meta"><strong>Roll 02</strong><span data-fr="Studio · Chemise ample, superposée" data-en="Studio · Loose shirt, layered">Studio · Chemise ample, superposée</span></div>
-    <div class="roll-frame"><img src="roll-02.png" alt="Planche contact, rouleau deux — série de portraits studio avec une chemise ample superposée sur le même set" loading="lazy"></div>
+    <div class="roll-frame"><img class="zoomable" src="roll-02.png" alt="Planche contact, rouleau deux — série de portraits studio avec une chemise ample superposée sur le même set" loading="lazy"></div>
     <p class="roll-caption" data-fr="Une couche en plus change la silhouette sans changer le set. La continuité sur un rouleau est une discipline — la direction se voit dans ce qui reste fixe, pas dans ce qu'on ajoute." data-en="A second layer changes the silhouette without changing the set. Continuity across a roll is a discipline — direction shows in what stays fixed, not in what's added.">Une couche en plus change la silhouette sans changer le set. La continuité sur un rouleau est une discipline — la direction se voit dans ce qui reste fixe, pas dans ce qu'on ajoute.</p>
   </article>
 
   <article class="roll">
     <div class="roll-meta"><strong>Roll 03</strong><span data-fr="Extérieur · Contre-jour, départ" data-en="Location · Backlit, walking away">Extérieur · Contre-jour, départ</span></div>
-    <div class="roll-frame"><img class="is-color" src="roll-03.png" alt="Silhouette de dos s'éloignant sur un parvis, contre-jour de fin de journée devant une façade gothique" loading="lazy"></div>
+    <div class="roll-frame"><img class="is-color zoomable" src="roll-03.png" alt="Silhouette de dos s'éloignant sur un parvis, contre-jour de fin de journée devant une façade gothique" loading="lazy"></div>
     <p class="roll-caption" data-fr="Le dernier plan du rouleau tourne le dos à la caméra. Le contre-jour efface le visage et ne laisse que la silhouette et le pas — la suggestion poussée jusqu'à son terme." data-en="The last frame of the roll turns its back on the camera. Backlight erases the face and leaves only the silhouette and the stride — suggestion taken all the way.">Le dernier plan du rouleau tourne le dos à la caméra. Le contre-jour efface le visage et ne laisse que la silhouette et le pas — la suggestion poussée jusqu'à son terme.</p>
   </article>
 </section>
@@ -519,7 +630,7 @@
   <div class="selects-grid">
     <div class="select-card">
       <div class="select-frame">
-        <img src="select-01.png" alt="Portrait rapproché, cheveux roux, chemise blanche ouverte, lumière naturelle sur mur brut" loading="lazy">
+        <img class="zoomable" src="select-01.png" alt="Portrait rapproché, cheveux roux, chemise blanche ouverte, lumière naturelle sur mur brut" loading="lazy">
         <div class="select-stamp" data-fr="RETENU" data-en="SELECT">RETENU</div>
       </div>
       <div class="select-meta"><strong data-fr="Sélection 01" data-en="Select 01">Sélection 01</strong><span data-fr="Portrait · Lumière naturelle" data-en="Portrait · Natural light">Portrait · Lumière naturelle</span></div>
@@ -528,7 +639,7 @@
 
     <div class="select-card">
       <div class="select-frame">
-        <img src="select-02.png" alt="Portrait en pied dans un entrepôt industriel, blazer oversize, lumière de fenêtre" loading="lazy">
+        <img class="zoomable" src="select-02.png" alt="Portrait en pied dans un entrepôt industriel, blazer oversize, lumière de fenêtre" loading="lazy">
         <div class="select-stamp" data-fr="RETENU" data-en="SELECT">RETENU</div>
       </div>
       <div class="select-meta"><strong data-fr="Sélection 02" data-en="Select 02">Sélection 02</strong><span data-fr="Extérieur · Friche industrielle" data-en="Location · Industrial shell">Extérieur · Friche industrielle</span></div>
@@ -554,6 +665,35 @@
   </article>
 </section>
 
+<section id="casting">
+  <div class="section-head">
+    <h2 data-fr="Portrait de femme 2027" data-en="Portrait of a Woman 2027">Portrait de femme 2027</h2>
+    <span class="eyebrow" data-fr="05 / Casting" data-en="05 / Casting">05 / Casting</span>
+  </div>
+  <p style="max-width:640px; margin-bottom:2.5rem; font-size:1.02rem; line-height:1.75; opacity:0.85;" data-fr="Une planche de casting, un même cadre pour dix visages — même mur brut, même lumière plate, même chemise blanche. Le point commun du studio devient le décor ; ce qui change, c'est tout le reste." data-en="A casting board, one same frame for ten faces — same raw wall, same flat light, same white shirt. The studio's constant becomes the backdrop; everything else is what varies.">Une planche de casting, un même cadre pour dix visages — même mur brut, même lumière plate, même chemise blanche. Le point commun du studio devient le décor ; ce qui change, c'est tout le reste.</p>
+
+  <div class="carousel-wrap">
+    <button class="carousel-nav prev" aria-label="Précédent / Previous" data-dir="-1">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <div class="carousel" id="castingCarousel">
+      <div class="carousel-slide"><div class="select-frame"><img class="zoomable" src="portrait-01.png" alt="Portrait casting 01, cheveux courts blonds, mur béton"></div><div class="carousel-caption">Casting 01</div></div>
+      <div class="carousel-slide"><div class="select-frame"><img class="zoomable" src="portrait-02.png" alt="Portrait casting 02, cheveux bruns ondulés, mur béton"></div><div class="carousel-caption">Casting 02</div></div>
+      <div class="carousel-slide"><div class="select-frame"><img class="zoomable" src="portrait-03.png" alt="Portrait casting 03, cheveux bruns lisses, mur patiné"></div><div class="carousel-caption">Casting 03</div></div>
+      <div class="carousel-slide"><div class="select-frame"><img class="zoomable" src="portrait-04.png" alt="Portrait casting 04, cheveux roux, taches de rousseur, mur béton"></div><div class="carousel-caption">Casting 04</div></div>
+      <div class="carousel-slide"><div class="select-frame"><img class="zoomable" src="portrait-05.png" alt="Portrait casting 05, cheveux afro courts, mur béton"></div><div class="carousel-caption">Casting 05</div></div>
+      <div class="carousel-slide"><div class="select-frame"><img class="zoomable" src="portrait-06.png" alt="Portrait casting 06, cheveux bruns bouclés, mur béton"></div><div class="carousel-caption">Casting 06</div></div>
+      <div class="carousel-slide"><div class="select-frame"><img class="zoomable" src="portrait-07.png" alt="Portrait casting 07, cheveux gris longs, mur patiné"></div><div class="carousel-caption">Casting 07</div></div>
+      <div class="carousel-slide"><div class="select-frame"><img class="zoomable" src="portrait-08.png" alt="Portrait casting 08, cheveux roux ondulés, mur patiné"></div><div class="carousel-caption">Casting 08</div></div>
+      <div class="carousel-slide"><div class="select-frame"><img class="zoomable" src="portrait-09.png" alt="Portrait casting 09, cheveux bruns longs et lisses, mur patiné"></div><div class="carousel-caption">Casting 09</div></div>
+      <div class="carousel-slide"><div class="select-frame"><img class="zoomable" src="portrait-10.png" alt="Portrait casting 10, cheveux bruns ondulés, mur béton"></div><div class="carousel-caption">Casting 10</div></div>
+    </div>
+    <button class="carousel-nav next" aria-label="Suivant / Next" data-dir="1">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+  </div>
+</section>
+
 <footer id="contact">
   <div class="footer-grid">
     <div>
@@ -574,6 +714,15 @@ DISPONIBLE POUR NOUVEAUX PROJETS — 2026</div>
     <span>© 2026</span>
   </div>
 </footer>
+
+<button class="back-to-top" id="backToTop" aria-label="Remonter en haut / Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose" data-fr="Fermer ✕" data-en="Close ✕">Fermer ✕</button>
+  <img id="lightboxImg" src="" alt="">
+</div>
 
 <script>
   // scroll reveal
@@ -609,6 +758,48 @@ DISPONIBLE POUR NOUVEAUX PROJETS — 2026</div>
   });
 
   applyLang('fr');
+
+  // back to top
+  const backToTop = document.getElementById('backToTop');
+  window.addEventListener('scroll', ()=>{
+    backToTop.classList.toggle('is-visible', window.scrollY > 700);
+  });
+  backToTop.addEventListener('click', ()=>{
+    window.scrollTo({ top:0, behavior:'smooth' });
+  });
+
+  // lightbox
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxClose = document.getElementById('lightboxClose');
+
+  function openLightbox(src, alt){
+    lightboxImg.src = src;
+    lightboxImg.alt = alt || '';
+    lightbox.classList.add('is-open');
+  }
+  function closeLightbox(){
+    lightbox.classList.remove('is-open');
+    lightboxImg.src = '';
+  }
+  document.querySelectorAll('img.zoomable').forEach(img=>{
+    img.addEventListener('click', ()=> openLightbox(img.src, img.alt));
+  });
+  lightbox.addEventListener('click', closeLightbox);
+  lightboxClose.addEventListener('click', (e)=>{ e.stopPropagation(); closeLightbox(); });
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape') closeLightbox();
+  });
+
+  // carousel arrows
+  const castingCarousel = document.getElementById('castingCarousel');
+  document.querySelectorAll('.carousel-nav').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const dir = parseInt(btn.getAttribute('data-dir'), 10);
+      const slideWidth = castingCarousel.querySelector('.carousel-slide').offsetWidth + 19;
+      castingCarousel.scrollBy({ left: dir * slideWidth, behavior:'smooth' });
+    });
+  });
 </script>
 
 </body>
