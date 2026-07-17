@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Someday Production — Direction visuelle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;1,300;1,400;1,500&family=Inter:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --noir:#0B0A09;
+    --frame:#161310;
+    --paper:#E8E2D6;
+    --ash:#8B8478;
+    --rust:#8C4A36;
+    --line: rgba(232,226,214,0.14);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--noir);
+    color:var(--paper);
+    font-family:'Inter',sans-serif;
+    font-weight:300;
+    overflow-x:hidden;
+  }
+
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    z-index:200;
+    pointer-events:none;
+    opacity:0.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    mix-blend-mode:overlay;
+  }
+
+  ::selection{background:var(--rust); color:var(--paper);}
+  a{color:inherit;}
+
+  .eyebrow{
+    font-family:'Space Mono',monospace;
+    font-size:0.7rem;
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+    color:var(--ash);
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:fixed; top:0; left:0; right:0;
+    z-index:100;
+    display:flex; justify-content:space-between; align-items:center;
+    padding:1.6rem clamp(1.5rem,5vw,4rem);
+    mix-blend-mode:difference;
+  }
+  .nav-mark{
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-weight:400;
+    font-size:1.05rem;
+    letter-spacing:0.02em;
+  }
+  .nav-mark span{color:var(--rust); font-style:normal;}
+  .nav-right{ display:flex; align-items:center; gap:1.6rem; }
+  .nav-meta{
+    font-family:'Space Mono',monospace;
+    font-size:0.65rem;
+    letter-spacing:0.15em;
+    color:var(--paper);
+    text-transform:uppercase;
+  }
+  .lang-toggle{
+    display:flex; align-items:center; gap:0.4rem;
+    font-family:'Space Mono',monospace;
+    font-size:0.68rem;
+    letter-spacing:0.1em;
+    background:none;
+    border:1px solid var(--paper);
+    border-radius:20px;
+    padding:0.3rem 0.3rem;
+    cursor:pointer;
+    color:var(--paper);
+  }
+  .lang-toggle span{
+    padding:0.15rem 0.55rem;
+    border-radius:14px;
+    transition:background 0.25s ease, color 0.25s ease;
+    opacity:0.55;
+  }
+  .lang-toggle span.active{
+    background:var(--paper);
+    color:var(--noir);
+    opacity:1;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:100svh;
+    display:flex; flex-direction:column; justify-content:flex-end;
+    position:relative;
+    padding:0 clamp(1.5rem,5vw,4rem) 3.5rem;
+    border-bottom:1px solid var(--line);
+  }
+  .hero-frame{
+    position:absolute; inset:0;
+    background-image:url('assets/roll-01.png');
+    background-size:cover;
+    background-position:center 20%;
+    filter:grayscale(1) contrast(1.05);
+  }
+  .hero-frame::after{
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(11,10,9,0.55) 0%, rgba(11,10,9,0.25) 40%, rgba(11,10,9,0.96) 100%);
+  }
+  .hero-content{ position:relative; z-index:2; max-width:780px; }
+  .hero-content .eyebrow{ display:block; margin-bottom:1.4rem; }
+  .hero h1{
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-weight:300;
+    font-size:clamp(3rem,9vw,6.4rem);
+    line-height:0.96;
+    letter-spacing:-0.01em;
+  }
+  .hero h1 em{ color:var(--rust); font-style:italic; font-weight:400; }
+  .hero p.lead{
+    margin-top:1.6rem;
+    max-width:480px;
+    font-size:1rem;
+    line-height:1.6;
+    color:var(--paper);
+    opacity:0.82;
+  }
+  .frame-tag{
+    position:absolute; z-index:2; right:clamp(1.5rem,5vw,4rem); top:3.6rem;
+    font-family:'Space Mono',monospace;
+    font-size:0.68rem;
+    letter-spacing:0.1em;
+    color:var(--ash);
+    text-align:right;
+    line-height:1.7;
+  }
+
+  /* ---------- SECTION shared ---------- */
+  section{ padding:clamp(4rem,10vw,7rem) clamp(1.5rem,5vw,4rem); }
+  .section-head{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    gap:2rem; margin-bottom:3rem;
+    border-bottom:1px solid var(--line);
+    padding-bottom:1.6rem;
+  }
+  .section-head h2{
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-weight:300;
+    font-size:clamp(1.8rem,3.4vw,2.6rem);
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:4rem;
+  }
+  .about-grid p{
+    font-size:1.02rem;
+    line-height:1.75;
+    color:var(--paper);
+    opacity:0.85;
+    margin-bottom:1.3rem;
+  }
+  .about-grid p:last-child{margin-bottom:0;}
+  .practice-list{ font-family:'Space Mono',monospace; font-size:0.72rem; color:var(--ash); letter-spacing:0.04em; }
+  .practice-list li{ list-style:none; padding:0.9rem 0; border-top:1px solid var(--line); display:flex; justify-content:space-between; gap:1rem;}
+  .practice-list li span:last-child{ color:var(--paper); text-align:right; max-width:60%;}
+
+  /* ---------- GALLERY / PROOF SHEETS ---------- */
+  .roll{
+    margin-bottom:clamp(3rem,7vw,5rem);
+    opacity:0; transform:translateY(28px);
+    transition:opacity 0.9s ease, transform 0.9s ease;
+  }
+  .roll.is-visible{ opacity:1; transform:translateY(0); }
+  .roll-meta{
+    display:flex; justify-content:space-between; align-items:baseline;
+    margin-bottom:1rem;
+    font-family:'Space Mono',monospace;
+    font-size:0.7rem;
+    letter-spacing:0.12em;
+    color:var(--ash);
+    text-transform:uppercase;
+  }
+  .roll-meta strong{ color:var(--paper); font-weight:400; }
+  .roll-frame{
+    position:relative;
+    border:1px solid var(--line);
+    background:var(--frame);
+    padding:0.5rem;
+  }
+  .roll-frame img{
+    display:block;
+    width:100%;
+    height:auto;
+    filter:grayscale(1) contrast(1.03);
+  }
+  .roll-frame::before{
+    content:"";
+    position:absolute;
+    width:64px; height:64px;
+    border:2px solid var(--rust);
+    border-radius:50%;
+    top:14%; left:8%;
+    opacity:0;
+    transform:scale(0.8) rotate(-8deg);
+    transition:opacity 0.5s ease, transform 0.5s ease;
+    mix-blend-mode:screen;
+    pointer-events:none;
+  }
+  .roll-frame:hover::before{ opacity:0.85; transform:scale(1) rotate(-8deg); }
+  .roll-caption{
+    margin-top:0.9rem;
+    font-size:0.85rem;
+    color:var(--ash);
+    max-width:560px;
+    line-height:1.6;
+  }
+
+  /* ---------- SELECTS (single pulled frames) ---------- */
+  .selects-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:clamp(1.5rem,3vw,2.5rem);
+  }
+  .select-card{
+    opacity:0; transform:translateY(28px);
+    transition:opacity 0.9s ease, transform 0.9s ease;
+  }
+  .select-card.is-visible{ opacity:1; transform:translateY(0); }
+  .select-frame{
+    position:relative;
+    border:1px solid var(--line);
+    background:var(--frame);
+    padding:0.5rem;
+    overflow:hidden;
+  }
+  .select-frame img{
+    display:block;
+    width:100%;
+    height:auto;
+    aspect-ratio:4/5;
+    object-fit:cover;
+    filter:grayscale(0.15) contrast(1.03);
+  }
+  .select-stamp{
+    position:absolute;
+    top:1.2rem; right:1.2rem;
+    width:52px; height:52px;
+    border:2px solid var(--rust);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    transform:rotate(-10deg);
+    mix-blend-mode:screen;
+    font-family:'Space Mono',monospace;
+    font-size:0.55rem;
+    letter-spacing:0.05em;
+    color:var(--rust);
+    text-align:center;
+    line-height:1.1;
+    text-transform:uppercase;
+    pointer-events:none;
+  }
+  .select-meta{
+    display:flex; justify-content:space-between; align-items:baseline;
+    margin-top:1rem;
+    font-family:'Space Mono',monospace;
+    font-size:0.7rem;
+    letter-spacing:0.12em;
+    color:var(--ash);
+    text-transform:uppercase;
+  }
+  .select-meta strong{ color:var(--paper); font-weight:400; }
+  .select-caption{
+    margin-top:0.7rem;
+    font-size:0.85rem;
+    color:var(--ash);
+    line-height:1.6;
+  }
+
+  /* ---------- REEL (video) ---------- */
+  .reel{
+    opacity:0; transform:translateY(28px);
+    transition:opacity 0.9s ease, transform 0.9s ease;
+  }
+  .reel.is-visible{ opacity:1; transform:translateY(0); }
+  .reel-frame{
+    position:relative;
+    border:1px solid var(--line);
+    background:var(--frame);
+    padding:0.5rem;
+  }
+  .reel-frame video{
+    display:block;
+    width:100%;
+    height:auto;
+    filter:grayscale(0.1) contrast(1.02);
+  }
+  .reel-meta{
+    display:flex; justify-content:space-between; align-items:baseline;
+    margin-bottom:1rem;
+    font-family:'Space Mono',monospace;
+    font-size:0.7rem;
+    letter-spacing:0.12em;
+    color:var(--ash);
+    text-transform:uppercase;
+  }
+  .reel-meta strong{ color:var(--paper); font-weight:400; }
+  .reel-caption{
+    margin-top:0.9rem;
+    font-size:0.85rem;
+    color:var(--ash);
+    max-width:560px;
+    line-height:1.6;
+  }
+
+  /* ---------- FOOTER / CONTACT ---------- */
+  footer{
+    border-top:1px solid var(--line);
+    padding:clamp(3.5rem,8vw,5.5rem) clamp(1.5rem,5vw,4rem) 2.5rem;
+  }
+  .footer-grid{
+    display:grid;
+    grid-template-columns:1.3fr 1fr;
+    gap:3rem;
+    margin-bottom:3.5rem;
+  }
+  footer h2{
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-weight:300;
+    font-size:clamp(2.2rem,5vw,3.6rem);
+    line-height:1.05;
+    margin-bottom:1.5rem;
+  }
+  .contact-line{
+    display:inline-block;
+    font-size:1.05rem;
+    color:var(--paper);
+    text-decoration:none;
+    border-bottom:1px solid var(--rust);
+    padding-bottom:0.2rem;
+    transition:opacity 0.3s ease;
+  }
+  .contact-line:hover{ opacity:0.7; }
+  .footer-meta{
+    font-family:'Space Mono',monospace;
+    font-size:0.7rem;
+    color:var(--ash);
+    letter-spacing:0.06em;
+    line-height:1.9;
+    align-self:end;
+    white-space:pre-line;
+  }
+  .footer-bottom{
+    display:flex; justify-content:space-between;
+    font-family:'Space Mono',monospace;
+    font-size:0.65rem;
+    color:var(--ash);
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    padding-top:1.6rem;
+    border-top:1px solid var(--line);
+  }
+
+  @media (max-width:760px){
+    .about-grid{ grid-template-columns:1fr; gap:2.2rem; }
+    .footer-grid{ grid-template-columns:1fr; gap:2rem; }
+    .frame-tag{ display:none; }
+    .nav-meta{ display:none; }
+    .selects-grid{ grid-template-columns:1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .roll{ transition:none; opacity:1; transform:none; }
+    .roll-frame::before{ transition:none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-mark">Someday <span>Production</span></div>
+  <div class="nav-right">
+    <div class="nav-meta" data-fr="Lyon — Direction visuelle" data-en="Lyon — Visual Direction">Lyon — Direction visuelle</div>
+    <button class="lang-toggle" id="langToggle" aria-label="Changer de langue / Switch language">
+      <span data-lang-btn="fr" class="active">FR</span><span data-lang-btn="en">EN</span>
+    </button>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-frame"></div>
+  <div class="frame-tag">ROLL 001<br>36 EXP · 500T<br>UNCUT</div>
+  <div class="hero-content">
+    <span class="eyebrow" data-fr="Planche contact / studio" data-en="Contact sheet / studio">Planche contact / studio</span>
+    <h1>Someday <em>Production</em></h1>
+    <p class="lead" data-fr="Direction visuelle pour l'image et le film, composée comme la pellicule se souvient d'une pièce — le grain, l'espace laissé vide, un corps abandonné pour l'essentiel à l'ombre." data-en="Visual direction for image and film, composed like film remembers a room — grain, negative space, and a body left mostly to shadow.">Direction visuelle pour l'image et le film, composée comme la pellicule se souvient d'une pièce — le grain, l'espace laissé vide, un corps abandonné pour l'essentiel à l'ombre.</p>
+  </div>
+</header>
+
+<section id="about">
+  <div class="section-head">
+    <h2 data-fr="La pratique" data-en="The practice">La pratique</h2>
+    <span class="eyebrow" data-fr="01 / Studio" data-en="01 / Studio">01 / Studio</span>
+  </div>
+  <div class="about-grid">
+    <div>
+      <p data-fr="Someday Production dirige l'image fixe et animée pour la mode et l'éditorial, construite plan par plan plutôt que générée d'un bloc. Chaque set est ancré dans un registre analogique — le comportement de la pellicule Kodak Vision3, un cadre cinémascope, une caméra fixe et un sujet qui a le droit de bouger à l'intérieur." data-en="Someday Production directs image and moving image for fashion and editorial work, built frame by frame rather than generated whole. Every set is grounded in an analog register — Kodak Vision3 stock behaviour, cinemascope framing, a static camera and a subject who is allowed to move inside it.">Someday Production dirige l'image fixe et animée pour la mode et l'éditorial, construite plan par plan plutôt que générée d'un bloc. Chaque set est ancré dans un registre analogique — le comportement de la pellicule Kodak Vision3, un cadre cinémascope, une caméra fixe et un sujet qui a le droit de bouger à l'intérieur.</p>
+      <p data-fr="Le travail privilégie la suggestion à la frontalité : ce qu'un plan retient dit plus que ce qu'il montre. Le grain, le halo et l'imperfection d'un vrai objectif sont traités comme volontaires — jamais lissés au nom du poli." data-en="The work favours suggestion over frontality: what a frame withholds does more than what it shows. Grain, halation and the imperfection of a real lens are treated as intentional — never smoothed away in the name of polish.">Le travail privilégie la suggestion à la frontalité : ce qu'un plan retient dit plus que ce qu'il montre. Le grain, le halo et l'imperfection d'un vrai objectif sont traités comme volontaires — jamais lissés au nom du poli.</p>
+    </div>
+    <ul class="practice-list">
+      <li><span data-fr="Pellicule" data-en="Stock">Pellicule</span><span>Kodak Vision3, 250D–500T</span></li>
+      <li><span data-fr="Cadre" data-en="Frame">Cadre</span><span data-fr="2.39:1, trépied fixe" data-en="2.39:1, static tripod">2.39:1, trépied fixe</span></li>
+      <li><span data-fr="Lumière" data-en="Light">Lumière</span><span data-fr="Disponible, quasi-fenêtre, low key" data-en="Available, near-window, low key">Disponible, quasi-fenêtre, low key</span></li>
+      <li><span data-fr="Référence" data-en="Reference">Référence</span><span data-fr="Espace négatif façon Malick" data-en="Malick negative space">Espace négatif façon Malick</span></li>
+      <li><span data-fr="Rendu" data-en="Output">Rendu</span><span data-fr="Photos éditoriales · film de campagne" data-en="Editorial stills · campaign film">Photos éditoriales · film de campagne</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="work">
+  <div class="section-head">
+    <h2 data-fr="Planches contact" data-en="Proof sheets">Planches contact</h2>
+    <span class="eyebrow" data-fr="02 / Travaux sélectionnés" data-en="02 / Selected work">02 / Travaux sélectionnés</span>
+  </div>
+
+  <article class="roll">
+    <div class="roll-meta"><strong>Roll 01</strong><span data-fr="Studio · Rideau contre-jour" data-en="Studio · Backlit curtain">Studio · Rideau contre-jour</span></div>
+    <div class="roll-frame"><img src="assets/roll-01.png" alt="Planche contact, rouleau un — série de portraits studio devant un rideau contre-jour" loading="lazy"></div>
+    <p class="roll-caption" data-fr="Première passe en lumière disponible, le rideau comme seul décor. Le set garde son aplomb sur tout le rouleau — même distance, même mur, seule l'inclinaison de la tête change la lecture." data-en="First pass under available light, curtain as the only backdrop. The set holds its composure across the roll — same distance, same wall, the read changes with the tilt of the head.">Première passe en lumière disponible, le rideau comme seul décor. Le set garde son aplomb sur tout le rouleau — même distance, même mur, seule l'inclinaison de la tête change la lecture.</p>
+  </article>
+
+  <article class="roll">
+    <div class="roll-meta"><strong>Roll 02</strong><span data-fr="Studio · Chemise ample, superposée" data-en="Studio · Loose shirt, layered">Studio · Chemise ample, superposée</span></div>
+    <div class="roll-frame"><img src="assets/roll-02.png" alt="Planche contact, rouleau deux — série de portraits studio avec une chemise ample superposée sur le même set" loading="lazy"></div>
+    <p class="roll-caption" data-fr="Une couche en plus change la silhouette sans changer le set. La continuité sur un rouleau est une discipline — la direction se voit dans ce qui reste fixe, pas dans ce qu'on ajoute." data-en="A second layer changes the silhouette without changing the set. Continuity across a roll is a discipline — direction shows in what stays fixed, not in what's added.">Une couche en plus change la silhouette sans changer le set. La continuité sur un rouleau est une discipline — la direction se voit dans ce qui reste fixe, pas dans ce qu'on ajoute.</p>
+  </article>
+
+  <article class="roll">
+    <div class="roll-meta"><strong>Roll 03</strong><span data-fr="Extérieur · Contre-jour, départ" data-en="Location · Backlit, walking away">Extérieur · Contre-jour, départ</span></div>
+    <div class="roll-frame"><img src="assets/roll-03.png" alt="Silhouette de dos s'éloignant sur un parvis, contre-jour de fin de journée devant une façade gothique" loading="lazy"></div>
+    <p class="roll-caption" data-fr="Le dernier plan du rouleau tourne le dos à la caméra. Le contre-jour efface le visage et ne laisse que la silhouette et le pas — la suggestion poussée jusqu'à son terme." data-en="The last frame of the roll turns its back on the camera. Backlight erases the face and leaves only the silhouette and the stride — suggestion taken all the way.">Le dernier plan du rouleau tourne le dos à la caméra. Le contre-jour efface le visage et ne laisse que la silhouette et le pas — la suggestion poussée jusqu'à son terme.</p>
+  </article>
+</section>
+
+<section id="selects">
+  <div class="section-head">
+    <h2 data-fr="Sélections" data-en="Selects">Sélections</h2>
+    <span class="eyebrow" data-fr="03 / Tirages retenus" data-en="03 / Pulled for print">03 / Tirages retenus</span>
+  </div>
+
+  <div class="selects-grid">
+    <div class="select-card">
+      <div class="select-frame">
+        <img src="assets/select-01.png" alt="Portrait rapproché, cheveux roux, chemise blanche ouverte, lumière naturelle sur mur brut" loading="lazy">
+        <div class="select-stamp" data-fr="RETENU" data-en="SELECT">RETENU</div>
+      </div>
+      <div class="select-meta"><strong data-fr="Sélection 01" data-en="Select 01">Sélection 01</strong><span data-fr="Portrait · Lumière naturelle" data-en="Portrait · Natural light">Portrait · Lumière naturelle</span></div>
+      <p class="select-caption" data-fr="Tiré du rouleau pour la couleur seule — le roux contre le mur brut porte tout le cadre, sans autre décor nécessaire." data-en="Pulled from the roll for the colour alone — the red against the raw wall carries the whole frame, no other set needed.">Tiré du rouleau pour la couleur seule — le roux contre le mur brut porte tout le cadre, sans autre décor nécessaire.</p>
+    </div>
+
+    <div class="select-card">
+      <div class="select-frame">
+        <img src="assets/select-02.png" alt="Portrait en pied dans un entrepôt industriel, blazer oversize, lumière de fenêtre" loading="lazy">
+        <div class="select-stamp" data-fr="RETENU" data-en="SELECT">RETENU</div>
+      </div>
+      <div class="select-meta"><strong data-fr="Sélection 02" data-en="Select 02">Sélection 02</strong><span data-fr="Extérieur · Friche industrielle" data-en="Location · Industrial shell">Extérieur · Friche industrielle</span></div>
+      <p class="select-caption" data-fr="Un décor trouvé plutôt que construit — verrière, béton, un blazer emprunté trop grand. La lumière de fenêtre fait le travail qu'un projecteur aurait forcé." data-en="A found location rather than a built one — steel windows, raw concrete, a blazer borrowed too big. Window light does the work a fixture would have forced.">Un décor trouvé plutôt que construit — verrière, béton, un blazer emprunté trop grand. La lumière de fenêtre fait le travail qu'un projecteur aurait forcé.</p>
+    </div>
+  </div>
+</section>
+
+<section id="reel">
+  <div class="section-head">
+    <h2 data-fr="Bobine" data-en="Reel">Bobine</h2>
+    <span class="eyebrow" data-fr="04 / Film" data-en="04 / Film">04 / Film</span>
+  </div>
+
+  <article class="reel">
+    <div class="reel-meta"><strong data-fr="Bobine 01" data-en="Reel 01">Bobine 01</strong><span data-fr="Studio · Plan séquence" data-en="Studio · Single take">Studio · Plan séquence</span></div>
+    <div class="reel-frame">
+      <video controls playsinline preload="metadata" poster="assets/reel-01-poster.jpg">
+        <source src="assets/reel-01.mp4" type="video/mp4">
+      </video>
+    </div>
+    <p class="reel-caption" data-fr="Même grammaire qu'à l'arrêt sur image : caméra fixe, le sujet seul autorisé à bouger dans le cadre." data-en="Same grammar as the still frames: a fixed camera, the subject alone allowed to move inside it.">Même grammaire qu'à l'arrêt sur image : caméra fixe, le sujet seul autorisé à bouger dans le cadre.</p>
+  </article>
+</section>
+
+<footer id="contact">
+  <div class="footer-grid">
+    <div>
+      <h2 data-fr="Tournons quelque chose." data-en="Let's shoot something.">Tournons quelque chose.</h2>
+      <a class="contact-line" href="mailto:somedayvhs@outlook.fr">somedayvhs@outlook.fr</a>
+    </div>
+    <div class="footer-meta" data-fr="LYON, FRANCE
+ÉDITORIAL · CAMPAGNE · DIRECTION
+DISPONIBLE POUR NOUVEAUX PROJETS — 2026" data-en="LYON, FRANCE
+EDITORIAL · CAMPAIGN · DIRECTION
+AVAILABLE FOR NEW WORK — 2026">LYON, FRANCE
+ÉDITORIAL · CAMPAGNE · DIRECTION
+DISPONIBLE POUR NOUVEAUX PROJETS — 2026</div>
+  </div>
+  <div class="footer-bottom">
+    <span>Someday Production</span>
+    <span>© 2026</span>
+  </div>
+</footer>
+
+<script>
+  // scroll reveal
+  const revealEls = document.querySelectorAll('.roll, .select-card, .reel');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('is-visible');
+        io.unobserve(e.target);
+      }
+    });
+  },{ threshold:0.15 });
+  revealEls.forEach(r=>io.observe(r));
+
+  // language toggle — French by default
+  const toggle = document.getElementById('langToggle');
+  const translatable = document.querySelectorAll('[data-fr][data-en]');
+  let currentLang = 'fr';
+
+  function applyLang(lang){
+    currentLang = lang;
+    document.documentElement.lang = lang;
+    translatable.forEach(el=>{
+      el.textContent = el.getAttribute('data-' + lang);
+    });
+    toggle.querySelectorAll('[data-lang-btn]').forEach(btn=>{
+      btn.classList.toggle('active', btn.getAttribute('data-lang-btn') === lang);
+    });
+  }
+
+  toggle.addEventListener('click', ()=>{
+    applyLang(currentLang === 'fr' ? 'en' : 'fr');
+  });
+
+  applyLang('fr');
+</script>
+
+</body>
+</html>
