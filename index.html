@@ -251,6 +251,7 @@
     pointer-events:none;
   }
   .roll-frame:hover::before{ opacity:0.85; transform:scale(1) rotate(-8deg); }
+  .roll-frame img.is-color{ filter:contrast(1.03) saturate(1.05); }
   .roll-caption{
     margin-top:0.9rem;
     font-size:0.85rem;
@@ -290,19 +291,23 @@
   .select-stamp{
     position:absolute;
     top:1.2rem; right:1.2rem;
-    width:52px; height:52px;
+    width:56px; height:56px;
     border:2px solid var(--rust);
     border-radius:50%;
+    background:rgba(11,10,9,0.55);
+    backdrop-filter:blur(2px);
     display:flex; align-items:center; justify-content:center;
     transform:rotate(-10deg);
-    mix-blend-mode:screen;
     font-family:'Space Mono',monospace;
-    font-size:0.55rem;
+    font-size:0.58rem;
+    font-weight:700;
     letter-spacing:0.05em;
-    color:var(--rust);
+    color:var(--paper);
     text-align:center;
     line-height:1.1;
     text-transform:uppercase;
+    text-shadow:0 1px 3px rgba(0,0,0,0.6);
+    box-shadow:0 0 0 3px rgba(11,10,9,0.35);
     pointer-events:none;
   }
   .select-meta{
@@ -428,7 +433,7 @@
 <body>
 
 <div class="opener">
-  <img src="opener.png" alt="Portrait en gros plan, cheveux roux, mains levées derrière la tête, veste rose">
+  <img src="assets/opener.png" alt="Portrait en gros plan, cheveux roux, mains levées derrière la tête, veste rose">
 </div>
 
 <nav>
@@ -479,19 +484,19 @@
 
   <article class="roll">
     <div class="roll-meta"><strong>Roll 01</strong><span data-fr="Studio · Rideau contre-jour" data-en="Studio · Backlit curtain">Studio · Rideau contre-jour</span></div>
-    <div class="roll-frame"><img src="roll-01.png" alt="Planche contact, rouleau un — série de portraits studio devant un rideau contre-jour" loading="lazy"></div>
+    <div class="roll-frame"><img src="assets/roll-01.png" alt="Planche contact, rouleau un — série de portraits studio devant un rideau contre-jour" loading="lazy"></div>
     <p class="roll-caption" data-fr="Première passe en lumière disponible, le rideau comme seul décor. Le set garde son aplomb sur tout le rouleau — même distance, même mur, seule l'inclinaison de la tête change la lecture." data-en="First pass under available light, curtain as the only backdrop. The set holds its composure across the roll — same distance, same wall, the read changes with the tilt of the head.">Première passe en lumière disponible, le rideau comme seul décor. Le set garde son aplomb sur tout le rouleau — même distance, même mur, seule l'inclinaison de la tête change la lecture.</p>
   </article>
 
   <article class="roll">
     <div class="roll-meta"><strong>Roll 02</strong><span data-fr="Studio · Chemise ample, superposée" data-en="Studio · Loose shirt, layered">Studio · Chemise ample, superposée</span></div>
-    <div class="roll-frame"><img src="roll-02.png" alt="Planche contact, rouleau deux — série de portraits studio avec une chemise ample superposée sur le même set" loading="lazy"></div>
+    <div class="roll-frame"><img src="assets/roll-02.png" alt="Planche contact, rouleau deux — série de portraits studio avec une chemise ample superposée sur le même set" loading="lazy"></div>
     <p class="roll-caption" data-fr="Une couche en plus change la silhouette sans changer le set. La continuité sur un rouleau est une discipline — la direction se voit dans ce qui reste fixe, pas dans ce qu'on ajoute." data-en="A second layer changes the silhouette without changing the set. Continuity across a roll is a discipline — direction shows in what stays fixed, not in what's added.">Une couche en plus change la silhouette sans changer le set. La continuité sur un rouleau est une discipline — la direction se voit dans ce qui reste fixe, pas dans ce qu'on ajoute.</p>
   </article>
 
   <article class="roll">
     <div class="roll-meta"><strong>Roll 03</strong><span data-fr="Extérieur · Contre-jour, départ" data-en="Location · Backlit, walking away">Extérieur · Contre-jour, départ</span></div>
-    <div class="roll-frame"><img src="roll-03.png" alt="Silhouette de dos s'éloignant sur un parvis, contre-jour de fin de journée devant une façade gothique" loading="lazy"></div>
+    <div class="roll-frame"><img class="is-color" src="assets/roll-03.png" alt="Silhouette de dos s'éloignant sur un parvis, contre-jour de fin de journée devant une façade gothique" loading="lazy"></div>
     <p class="roll-caption" data-fr="Le dernier plan du rouleau tourne le dos à la caméra. Le contre-jour efface le visage et ne laisse que la silhouette et le pas — la suggestion poussée jusqu'à son terme." data-en="The last frame of the roll turns its back on the camera. Backlight erases the face and leaves only the silhouette and the stride — suggestion taken all the way.">Le dernier plan du rouleau tourne le dos à la caméra. Le contre-jour efface le visage et ne laisse que la silhouette et le pas — la suggestion poussée jusqu'à son terme.</p>
   </article>
 </section>
@@ -505,7 +510,7 @@
   <div class="selects-grid">
     <div class="select-card">
       <div class="select-frame">
-        <img src="select-01.png" alt="Portrait rapproché, cheveux roux, chemise blanche ouverte, lumière naturelle sur mur brut" loading="lazy">
+        <img src="assets/select-01.png" alt="Portrait rapproché, cheveux roux, chemise blanche ouverte, lumière naturelle sur mur brut" loading="lazy">
         <div class="select-stamp" data-fr="RETENU" data-en="SELECT">RETENU</div>
       </div>
       <div class="select-meta"><strong data-fr="Sélection 01" data-en="Select 01">Sélection 01</strong><span data-fr="Portrait · Lumière naturelle" data-en="Portrait · Natural light">Portrait · Lumière naturelle</span></div>
@@ -514,7 +519,7 @@
 
     <div class="select-card">
       <div class="select-frame">
-        <img src="select-02.png" alt="Portrait en pied dans un entrepôt industriel, blazer oversize, lumière de fenêtre" loading="lazy">
+        <img src="assets/select-02.png" alt="Portrait en pied dans un entrepôt industriel, blazer oversize, lumière de fenêtre" loading="lazy">
         <div class="select-stamp" data-fr="RETENU" data-en="SELECT">RETENU</div>
       </div>
       <div class="select-meta"><strong data-fr="Sélection 02" data-en="Select 02">Sélection 02</strong><span data-fr="Extérieur · Friche industrielle" data-en="Location · Industrial shell">Extérieur · Friche industrielle</span></div>
@@ -532,7 +537,7 @@
   <article class="reel">
     <div class="reel-meta"><strong data-fr="Bobine 01" data-en="Reel 01">Bobine 01</strong><span data-fr="Studio · Plan séquence" data-en="Studio · Single take">Studio · Plan séquence</span></div>
     <div class="reel-frame">
-      <video controls playsinline preload="metadata" poster="reel-01-poster.jpg">
+      <video controls playsinline preload="metadata" poster="assets/reel-01-poster.jpg">
         <source src="assets/reel-01.mp4" type="video/mp4">
       </video>
     </div>
