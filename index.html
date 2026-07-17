@@ -95,6 +95,34 @@
     opacity:1;
   }
 
+  /* ---------- OPENER (full-bleed fade intro) ---------- */
+  .opener{
+    position:relative;
+    width:100%;
+    height:100svh;
+    overflow:hidden;
+    animation:openerFadeIn 1.8s ease both;
+  }
+  .opener img{
+    position:absolute; inset:0;
+    width:100%; height:100%;
+    object-fit:cover;
+    object-position:center 30%;
+    filter:contrast(1.03) saturate(1.02);
+  }
+  .opener::after{
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(11,10,9,0.05) 0%, rgba(11,10,9,0.1) 55%, var(--noir) 96%);
+  }
+  @keyframes openerFadeIn{
+    from{ opacity:0; }
+    to{ opacity:1; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .opener{ animation:none; }
+  }
+
   /* ---------- HERO ---------- */
   .hero{
     min-height:100svh;
@@ -180,6 +208,9 @@
   /* ---------- GALLERY / PROOF SHEETS ---------- */
   .roll{
     margin-bottom:clamp(3rem,7vw,5rem);
+    max-width:460px;
+    margin-left:auto;
+    margin-right:auto;
     opacity:0; transform:translateY(28px);
     transition:opacity 0.9s ease, transform 0.9s ease;
   }
@@ -233,6 +264,8 @@
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:clamp(1.5rem,3vw,2.5rem);
+    max-width:720px;
+    margin:0 auto;
   }
   .select-card{
     opacity:0; transform:translateY(28px);
@@ -291,6 +324,9 @@
 
   /* ---------- REEL (video) ---------- */
   .reel{
+    max-width:520px;
+    margin-left:auto;
+    margin-right:auto;
     opacity:0; transform:translateY(28px);
     transition:opacity 0.9s ease, transform 0.9s ease;
   }
@@ -391,6 +427,10 @@
 </head>
 <body>
 
+<div class="opener">
+  <img src="assets/opener.png" alt="Portrait en gros plan, cheveux roux, mains levées derrière la tête, veste rose">
+</div>
+
 <nav>
   <div class="nav-mark">Someday <span>Production</span></div>
   <div class="nav-right">
@@ -451,7 +491,7 @@
 
   <article class="roll">
     <div class="roll-meta"><strong>Roll 03</strong><span data-fr="Extérieur · Contre-jour, départ" data-en="Location · Backlit, walking away">Extérieur · Contre-jour, départ</span></div>
-    <div class="roll-frame"><img src="roll-03.png" alt="Silhouette de dos s'éloignant sur un parvis, contre-jour de fin de journée devant une façade gothique" loading="lazy"></div>
+    <div class="roll-frame"><img src="assets/roll-03.png" alt="Silhouette de dos s'éloignant sur un parvis, contre-jour de fin de journée devant une façade gothique" loading="lazy"></div>
     <p class="roll-caption" data-fr="Le dernier plan du rouleau tourne le dos à la caméra. Le contre-jour efface le visage et ne laisse que la silhouette et le pas — la suggestion poussée jusqu'à son terme." data-en="The last frame of the roll turns its back on the camera. Backlight erases the face and leaves only the silhouette and the stride — suggestion taken all the way.">Le dernier plan du rouleau tourne le dos à la caméra. Le contre-jour efface le visage et ne laisse que la silhouette et le pas — la suggestion poussée jusqu'à son terme.</p>
   </article>
 </section>
@@ -465,7 +505,7 @@
   <div class="selects-grid">
     <div class="select-card">
       <div class="select-frame">
-        <img src="select-01.png" alt="Portrait rapproché, cheveux roux, chemise blanche ouverte, lumière naturelle sur mur brut" loading="lazy">
+        <img src="assets/select-01.png" alt="Portrait rapproché, cheveux roux, chemise blanche ouverte, lumière naturelle sur mur brut" loading="lazy">
         <div class="select-stamp" data-fr="RETENU" data-en="SELECT">RETENU</div>
       </div>
       <div class="select-meta"><strong data-fr="Sélection 01" data-en="Select 01">Sélection 01</strong><span data-fr="Portrait · Lumière naturelle" data-en="Portrait · Natural light">Portrait · Lumière naturelle</span></div>
@@ -474,7 +514,7 @@
 
     <div class="select-card">
       <div class="select-frame">
-        <img src="select-02.png" alt="Portrait en pied dans un entrepôt industriel, blazer oversize, lumière de fenêtre" loading="lazy">
+        <img src="assets/select-02.png" alt="Portrait en pied dans un entrepôt industriel, blazer oversize, lumière de fenêtre" loading="lazy">
         <div class="select-stamp" data-fr="RETENU" data-en="SELECT">RETENU</div>
       </div>
       <div class="select-meta"><strong data-fr="Sélection 02" data-en="Select 02">Sélection 02</strong><span data-fr="Extérieur · Friche industrielle" data-en="Location · Industrial shell">Extérieur · Friche industrielle</span></div>
@@ -493,7 +533,7 @@
     <div class="reel-meta"><strong data-fr="Bobine 01" data-en="Reel 01">Bobine 01</strong><span data-fr="Studio · Plan séquence" data-en="Studio · Single take">Studio · Plan séquence</span></div>
     <div class="reel-frame">
       <video controls playsinline preload="metadata" poster="assets/reel-01-poster.jpg">
-        <source src="reel-01.mp4" type="video/mp4">
+        <source src="assets/reel-01.mp4" type="video/mp4">
       </video>
     </div>
     <p class="reel-caption" data-fr="Même grammaire qu'à l'arrêt sur image : caméra fixe, le sujet seul autorisé à bouger dans le cadre." data-en="Same grammar as the still frames: a fixed camera, the subject alone allowed to move inside it.">Même grammaire qu'à l'arrêt sur image : caméra fixe, le sujet seul autorisé à bouger dans le cadre.</p>
