@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Someday Production — Direction visuelle</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;1,300;1,400;1,500&family=Inter:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -133,7 +136,7 @@
   }
   .hero-frame{
     position:absolute; inset:0;
-    background-image:url('assets/roll-01.png');
+    background-image:url('roll-01.png');
     background-size:cover;
     background-position:center 20%;
     filter:grayscale(1) contrast(1.05);
@@ -414,6 +417,12 @@
     padding-top:1.6rem;
     border-top:1px solid var(--line);
   }
+  .footer-bottom a{
+    color:var(--ash);
+    text-decoration:none;
+    transition:color 0.25s ease;
+  }
+  .footer-bottom a:hover{ color:var(--paper); }
 
   @media (max-width:760px){
     .about-grid{ grid-template-columns:1fr; gap:2.2rem; }
@@ -561,6 +570,7 @@ DISPONIBLE POUR NOUVEAUX PROJETS — 2026</div>
   </div>
   <div class="footer-bottom">
     <span>Someday Production</span>
+    <a href="https://somedayvhs.github.io/MaisonEditorial/maison-editorial-final.html" target="_blank" rel="noopener" data-fr="Maison Editorial →" data-en="Maison Editorial →">Maison Editorial →</a>
     <span>© 2026</span>
   </div>
 </footer>
