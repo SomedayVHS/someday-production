@@ -512,6 +512,19 @@
   .carousel-nav.next{ right:-1.2rem; }
   .carousel-nav svg{ width:16px; height:16px; }
 
+  .video-carousel .carousel-slide{
+    width:min(85vw, 480px);
+  }
+  .video-carousel .reel-frame{
+    margin-bottom:0;
+  }
+  .video-carousel video{
+    display:block;
+    width:100%;
+    height:auto;
+    filter:grayscale(0.1) contrast(1.02);
+  }
+
   @media (max-width:760px){
     .carousel-nav{ display:none; }
   }
@@ -724,15 +737,49 @@
   </article>
 </section>
 
+<section id="reel-carousel">
+  <div class="section-head">
+    <h2 data-fr="Bobines" data-en="Reels">Bobines</h2>
+    <span class="eyebrow" data-fr="05 / Défilement" data-en="05 / Scroll">05 / Défilement</span>
+  </div>
+
+  <div class="carousel-wrap">
+    <button class="carousel-nav prev" aria-label="Précédent / Previous" data-dir="-1" data-target="reelVideoCarousel">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <div class="carousel video-carousel" id="reelVideoCarousel">
+      <div class="carousel-slide">
+        <div class="reel-frame">
+          <video controls playsinline preload="metadata" poster="reel-04-poster.jpg">
+            <source src="reel-04.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="reel-meta" style="margin-top:0.9rem; margin-bottom:0;"><strong data-fr="Bobine 04" data-en="Reel 04">Bobine 04</strong><span data-fr="Studio · Plan séquence" data-en="Studio · Single take">Studio · Plan séquence</span></div>
+      </div>
+      <div class="carousel-slide">
+        <div class="reel-frame">
+          <video controls playsinline preload="metadata" poster="reel-05-poster.jpg">
+            <source src="reel-05.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="reel-meta" style="margin-top:0.9rem; margin-bottom:0;"><strong data-fr="Bobine 05" data-en="Reel 05">Bobine 05</strong><span data-fr="Studio · Plan séquence" data-en="Studio · Single take">Studio · Plan séquence</span></div>
+      </div>
+    </div>
+    <button class="carousel-nav next" aria-label="Suivant / Next" data-dir="1" data-target="reelVideoCarousel">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+  </div>
+</section>
+
 <section id="casting">
   <div class="section-head">
     <h2 data-fr="Portrait de femme 2027" data-en="Portrait of a Woman 2027">Portrait de femme 2027</h2>
-    <span class="eyebrow" data-fr="05 / Casting" data-en="05 / Casting">05 / Casting</span>
+    <span class="eyebrow" data-fr="06 / Casting" data-en="06 / Casting">06 / Casting</span>
   </div>
   <p style="max-width:640px; margin-bottom:2.5rem; font-size:1.02rem; line-height:1.75; opacity:0.85;" data-fr="Une planche de casting, un même cadre pour dix visages — même mur brut, même lumière plate, même chemise blanche. Le point commun du studio devient le décor ; ce qui change, c'est tout le reste." data-en="A casting board, one same frame for ten faces — same raw wall, same flat light, same white shirt. The studio's constant becomes the backdrop; everything else is what varies.">Une planche de casting, un même cadre pour dix visages — même mur brut, même lumière plate, même chemise blanche. Le point commun du studio devient le décor ; ce qui change, c'est tout le reste.</p>
 
   <div class="carousel-wrap">
-    <button class="carousel-nav prev" aria-label="Précédent / Previous" data-dir="-1">
+    <button class="carousel-nav prev" aria-label="Précédent / Previous" data-dir="-1" data-target="castingCarousel">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 18l-6-6 6-6"/></svg>
     </button>
     <div class="carousel" id="castingCarousel">
@@ -747,7 +794,7 @@
       <div class="carousel-slide"><div class="select-frame"><img class="carousel-photo" src="portrait-09.png" data-fullsrc="makingof-09.png" data-caption-fr="Vérification au miroir de poche." data-caption-en="A quick check in a pocket mirror." alt="Portrait casting 09, cheveux bruns longs et lisses, mur patiné"><div class="carousel-hint" data-fr="Coulisses" data-en="Behind the scenes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7z"/></svg>Coulisses</div></div><div class="carousel-caption">Casting 09</div></div>
       <div class="carousel-slide"><div class="select-frame"><img class="carousel-photo" src="portrait-10.png" data-fullsrc="makingof-10.png" data-caption-fr="La styliste ajuste le col, hors champ." data-caption-en="The stylist adjusts the collar, off-frame." alt="Portrait casting 10, cheveux bruns ondulés, mur béton"><div class="carousel-hint" data-fr="Coulisses" data-en="Behind the scenes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7z"/></svg>Coulisses</div></div><div class="carousel-caption">Casting 10</div></div>
     </div>
-    <button class="carousel-nav next" aria-label="Suivant / Next" data-dir="1">
+    <button class="carousel-nav next" aria-label="Suivant / Next" data-dir="1" data-target="castingCarousel">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18l6-6-6-6"/></svg>
     </button>
   </div>
@@ -867,12 +914,14 @@ DISPONIBLE POUR NOUVEAUX PROJETS — 2026</div>
   });
 
   // carousel arrows
-  const castingCarousel = document.getElementById('castingCarousel');
   document.querySelectorAll('.carousel-nav').forEach(btn=>{
     btn.addEventListener('click', ()=>{
+      const targetId = btn.getAttribute('data-target');
+      const track = document.getElementById(targetId);
+      if(!track) return;
       const dir = parseInt(btn.getAttribute('data-dir'), 10);
-      const slideWidth = castingCarousel.querySelector('.carousel-slide').offsetWidth + 19;
-      castingCarousel.scrollBy({ left: dir * slideWidth, behavior:'smooth' });
+      const slideWidth = track.querySelector('.carousel-slide').offsetWidth + 19;
+      track.scrollBy({ left: dir * slideWidth, behavior:'smooth' });
     });
   });
 </script>
